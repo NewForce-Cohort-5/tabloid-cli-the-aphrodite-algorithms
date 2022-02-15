@@ -78,7 +78,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
             post.Author = ChooseAuthor("Please choose an author for this post:");
 
-            //post.Blog = ChooseBlog("Please choose a blog for this post");
+            post.Blog = ChooseBlog("Please choose a blog for this post");
 
             _postRepository.Insert(post);
             
