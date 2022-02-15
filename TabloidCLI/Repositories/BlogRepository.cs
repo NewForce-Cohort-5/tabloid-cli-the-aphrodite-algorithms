@@ -113,37 +113,37 @@ namespace TabloidCLI
 
         public void Update(Blog blog)
         {
-            using (SqlConnection conn = Connection)
-            {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"UPDATE Blog 
-                                           SET Title = @title,
-                                               Url = @url
-                                         WHERE id = @id";
+            //using (SqlConnection conn = Connection)
+            //{
+            //    conn.Open();
+            //    using (SqlCommand cmd = conn.CreateCommand())
+            //    {
+            //        cmd.CommandText = @"UPDATE Blog 
+            //                               SET Title = @title,
+            //                                   Url = @url
+            //                             WHERE id = @id";
 
-                    cmd.Parameters.AddWithValue("@title", blog.Title);
-                    cmd.Parameters.AddWithValue("@url", blog.Url);
+            //        cmd.Parameters.AddWithValue("@title", blog.Title);
+            //        cmd.Parameters.AddWithValue("@url", blog.Url);
 
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            //        cmd.ExecuteNonQuery();
+            //    }
+            //}
         }
 
         public void Delete(int id)
         {
-            using (SqlConnection conn = Connection)
-            {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"DELETE FROM Author WHERE id = @id";
-                    cmd.Parameters.AddWithValue("@id", id);
+            //using (SqlConnection conn = Connection)
+            //{
+            //    conn.Open();
+            //    using (SqlCommand cmd = conn.CreateCommand())
+            //    {
+            //        cmd.CommandText = @"DELETE FROM Author WHERE id = @id";
+            //        cmd.Parameters.AddWithValue("@id", id);
 
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            //        cmd.ExecuteNonQuery();
+            //    }
+            //}
         }
 
         public void InsertTag(Blog blog, Tag tag)
