@@ -53,56 +53,59 @@ namespace TabloidCLI.UserInterfaceManagers
         private void List()
         {
             List<Journal> journalEntries = _journalRepository.GetAll();
-            foreach (Journal journalEntry in journalEntries)
+            foreach (Journal entry in journalEntries)
             {
-                Console.WriteLine(journalEntry);
+                Console.WriteLine(entry);
             }
         }
 
-        private Journal Choose(string prompt = null)
-        {
-            if (prompt == null)
-            {
-                prompt = "Please choose an Entry:";
-            }
+        //private Journal Choose(string prompt = null)
+        //{
+        //    if (prompt == null)
+        //    {
+        //        prompt = "Please choose an Entry:";
+        //    }
 
-            Console.WriteLine(prompt);
+        //    Console.WriteLine(prompt);
 
-            List<Journal> journalEntries = _journalRepository.GetAll();
+        //    List<Journal> journalEntries = _journalRepository.GetAll();
 
-            for (int i = 0; i < journalEntries.Count; i++)
-            {
-                Journal journal = journalEntries[i];
-                Console.WriteLine($" {i + 1}) {journal.Title}");
-            }
-            Console.Write("> ");
+        //    for (int i = 0; i < journalEntries.Count; i++)
+        //    {
+        //        Journal journal = journalEntries[i];
+        //        Console.WriteLine($" {i + 1}) {journal.Title}");
+        //    }
+        //    Console.Write("> ");
 
-            string input = Console.ReadLine();
-            try
-            {
-                int choice = int.Parse(input);
-                return journalEntries[choice - 1];
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Invalid Selection");
-                return null;
-            }
-        }
+        //    string input = Console.ReadLine();
+        //    try
+        //    {
+        //        int choice = int.Parse(input);
+        //        return journalEntries[choice - 1];
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Invalid Selection");
+        //        return null;
+        //    }
+        //}
 
 
         private void Add()
         {
             Console.WriteLine("New Entry");
-            Journal journalEntry = new Journal();
+            Journal entry = new Journal();
 
             Console.Write("Entry Title: ");
-            journalEntry.Title = Console.ReadLine();
+            entry.Title = Console.ReadLine();
 
             Console.Write("Entry Content: ");
-            journalEntry.Content = Console.ReadLine();
+            entry.Content = Console.ReadLine();
 
-            _journalRepository.Insert(journalEntry);
+            //This line auto captures Date & Time so user doesn't need to manually enter it.
+            entry.CreateDateTime = DateTime.Now;
+
+            _journalRepository.Insert(entry);
         }
 
 

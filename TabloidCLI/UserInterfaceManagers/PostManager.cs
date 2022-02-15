@@ -78,7 +78,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
             post.Author = ChooseAuthor("Please choose an author for this post:");
 
-            post.Blog = ChooseBlog("Please choose a blog for this post");
+            //post.Blog = ChooseBlog("Please choose a blog for this post");
 
             _postRepository.Insert(post);
             
@@ -127,37 +127,37 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
-        private Blog ChooseBlog(string prompt = null)
-        {
-            if (prompt == null)
-            {
-                prompt = "Please choose a Blog:";
-            }
+        //private Blog ChooseBlog(string prompt = null)
+        //{
+        //    if (prompt == null)
+        //    {
+        //        prompt = "Please choose a Blog:";
+        //    }
 
-            Console.WriteLine(prompt);
+        //    Console.WriteLine(prompt);
 
-            BlogRepository blogRepository = new BlogRepository(_connectionString);
+        //    BlogRepository blogRepository = new BlogRepository(_connectionString);
 
-            List<Blog> blogs = blogRepository.GetAll();
+        //    List<Blog> blogs = blogRepository.GetAll();
 
-            for (int i = 0; i < blogs.Count; i++)
-            {
-                Blog blog = blogs[i];
-                Console.WriteLine($" {i + 1}) {blog.Title}");
-            }
-            Console.Write("> ");
+        //    for (int i = 0; i < blogs.Count; i++)
+        //    {
+        //        Blog blog = blogs[i];
+        //        Console.WriteLine($" {i + 1}) {blog.Title}");
+        //    }
+        //    Console.Write("> ");
 
-            string input = Console.ReadLine();
-            try
-            {
-                int choice = int.Parse(input);
-                return blogs[choice - 1];
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Invalid Selection");
-                return null;
-            }
-        }
+        //    string input = Console.ReadLine();
+        //    try
+        //    {
+        //        int choice = int.Parse(input);
+        //        return blogs[choice - 1];
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Invalid Selection");
+        //        return null;
+        //    }
+        //}
     }
 }

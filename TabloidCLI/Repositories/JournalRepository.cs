@@ -28,14 +28,14 @@ namespace TabloidCLI
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        Journal journalEntry = new Journal()
+                        Journal entry = new Journal()
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Title = reader.GetString(reader.GetOrdinal("Title")),
                             Content = reader.GetString(reader.GetOrdinal("Content")),
                             CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
                         };
-                        journalEntries.Add(journalEntry);
+                        journalEntries.Add(entry);
                     }
 
                     reader.Close();
@@ -65,14 +65,14 @@ namespace TabloidCLI
 
                     cmd.Parameters.AddWithValue("@id", id);
 
-                    Journal journalEntry = null;
+                    Journal entry = null;
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        if (journalEntry == null)
+                        if (entry == null)
                         {
-                            journalEntry = new Journal()
+                            entry = new Journal()
                             {
                                 Id = id,
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
@@ -85,12 +85,12 @@ namespace TabloidCLI
 
                     reader.Close();
 
-                    return journalEntry;
+                    return entry;
                 }
             }
         }
 
-        public void Insert(Journal journalEntry)
+        public void Insert(Journal entry)
         {
             using (SqlConnection conn = Connection)
             {
@@ -98,17 +98,17 @@ namespace TabloidCLI
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"INSERT INTO Journal (Title, Content, CreateDateTime )
-                                                     VALUES (@Title, @Content, @CreateDateTime)";
-                    cmd.Parameters.AddWithValue("@Title", journalEntry.Title);
-                    cmd.Parameters.AddWithValue("@Content", journalEntry.Content);
-                    cmd.Parameters.AddWithValue("@CreateDateTime", journalEntry.CreateDateTime);
+                                                     VALUES (@title, @content, @createDateTime)";
+                    cmd.Parameters.AddWithValue("@title", entry.Title);
+                    cmd.Parameters.AddWithValue("@content", entry.Content);
+                    cmd.Parameters.AddWithValue("@createDateTime", entry.CreateDateTime);
 
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void Update(Journal journalEntry)
+        public void Update(Journal entry)
         {
         //    using (SqlConnection conn = Connection)
         //    {
@@ -116,12 +116,12 @@ namespace TabloidCLI
         //        using (SqlCommand cmd = conn.CreateCommand())
         //        {
         //            cmd.CommandText = @"UPDATE Journal 
-        //                                   SET Title = @Title,
-        //                                       Content = @Content
+        //                                   SET Title = @title,
+        //                                       Content = @content
         //                                 WHERE id = @id";
 
-        //            cmd.Parameters.AddWithValue("@Title", journalEntry.Title);
-        //            cmd.Parameters.AddWithValue("@Content", journalEntry.Content);
+        //            cmd.Parameters.AddWithValue("@title", journalEntry.Title);
+        //            cmd.Parameters.AddWithValue("@content", journalEntry.Content);
         //            cmd.Parameters.AddWithValue("@id", journalEntry.Id);
 
         //            cmd.ExecuteNonQuery();
