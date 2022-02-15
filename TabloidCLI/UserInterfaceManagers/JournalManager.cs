@@ -16,7 +16,6 @@ namespace TabloidCLI.UserInterfaceManagers
             _journalRepository = new JournalRepository(connectionString);
             _connectionString = connectionString;
         }
-
         public IUserInterfaceManager Execute()
         {
             Console.WriteLine("Journal Menu");
@@ -56,6 +55,7 @@ namespace TabloidCLI.UserInterfaceManagers
             foreach (Journal entry in journalEntries)
             {
                 Console.WriteLine(entry);
+                Console.WriteLine("---------");
             }
         }
 
@@ -90,7 +90,6 @@ namespace TabloidCLI.UserInterfaceManagers
         //    }
         //}
 
-
         private void Add()
         {
             Console.WriteLine("New Entry");
@@ -107,7 +106,6 @@ namespace TabloidCLI.UserInterfaceManagers
 
             _journalRepository.Insert(entry);
         }
-
 
         private void Edit()
         {
@@ -133,7 +131,6 @@ namespace TabloidCLI.UserInterfaceManagers
 
             //_journalRepository.Update(entryToEdit);
         }
-
 
         private void Remove()
         {

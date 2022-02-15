@@ -55,12 +55,8 @@ namespace TabloidCLI
                     cmd.CommandText = @"SELECT j.Id AS JournalId,
                                                j.Title,
                                                j.Content,
-                                               j.CreateDateTime,
-                                               t.Id AS TagId,
-                                               t.Name
+                                               j.CreateDateTime
                                           FROM Journal j
-                                               LEFT JOIN JournalTag jt on j.Id = jt.JournalId
-                                               LEFT JOIN Tag t on t.Id = jt.TagId
                                           WHERE j.id = @id";
 
                     cmd.Parameters.AddWithValue("@id", id);
