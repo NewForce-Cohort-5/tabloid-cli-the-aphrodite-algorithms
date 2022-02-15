@@ -57,7 +57,6 @@ namespace TabloidCLI
                                                j.Content,
                                                j.CreateDateTime
                                           FROM Journal j
-                                               
                                           WHERE j.id = @id";
 
                     cmd.Parameters.AddWithValue("@id", id);

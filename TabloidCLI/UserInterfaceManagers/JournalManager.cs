@@ -55,6 +55,7 @@ namespace TabloidCLI.UserInterfaceManagers
             foreach (Journal entry in journalEntries)
             {
                 Console.WriteLine(entry);
+                Console.WriteLine("---------");
             }
         }
 
