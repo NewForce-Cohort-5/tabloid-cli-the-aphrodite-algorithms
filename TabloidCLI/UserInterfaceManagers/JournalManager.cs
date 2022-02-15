@@ -134,11 +134,11 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Remove()
         {
-            //Journal entryToDelete = Choose("Which entry would you like to remove?");
-            //if (entryToDelete != null)
-            //{
-            //    _journalRepository.Delete(entryToDelete.Id);
-            //}
+            Journal entryToDelete = Choose("Which entry would you like to remove?");
+            if (entryToDelete != null)
+            {
+                _journalRepository.Delete(entryToDelete.Id);
+            }
         }
     }
 }
