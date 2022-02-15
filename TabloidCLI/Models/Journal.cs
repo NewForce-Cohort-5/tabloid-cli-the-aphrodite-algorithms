@@ -15,7 +15,7 @@ namespace TabloidCLI.Models
         {
             get
             {
-                return $"\nEntry Title: {Title} \nPublished on {CreateDateTime}\n {Content}\n";
+                return $"\nEntry Title: {Title} \nPublished on {CreateDateTime} \nEntry: {Content}\n";
             }
         }
 
