@@ -10,7 +10,6 @@ namespace TabloidCLI
     {
         public JournalRepository(string connectionString) : base(connectionString) { }
 
-
         public List<Journal> GetAll()
         {
             using (SqlConnection conn = Connection)
@@ -45,7 +44,6 @@ namespace TabloidCLI
                 }
             }
         }
-
 
         public Journal Get(int id)
         {
@@ -92,7 +90,6 @@ namespace TabloidCLI
             }
         }
 
-
         public void Insert(Journal journalEntry)
         {
             using (SqlConnection conn = Connection)
@@ -110,7 +107,6 @@ namespace TabloidCLI
                 }
             }
         }
-
 
         public void Update(Journal journalEntry)
         {
@@ -133,7 +129,6 @@ namespace TabloidCLI
         //    }
         }
 
-
         public void Delete(int id)
         {
         //    using (SqlConnection conn = Connection)
@@ -148,7 +143,6 @@ namespace TabloidCLI
         //        }
         //    }
         }
-
 
         //public void InsertTag(Author author, Tag tag)
         //{
@@ -165,7 +159,6 @@ namespace TabloidCLI
         //        }
         //    }
         //}
-
 
         //public void DeleteTag(int authorId, int tagId)
         //{
