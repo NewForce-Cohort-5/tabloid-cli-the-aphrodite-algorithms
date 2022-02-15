@@ -10,6 +10,7 @@ namespace TabloidCLI
     {
         public JournalRepository(string connectionString) : base(connectionString) { }
 
+
         public List<Journal> GetAll()
         {
             using (SqlConnection conn = Connection)
@@ -44,6 +45,7 @@ namespace TabloidCLI
                 }
             }
         }
+
 
         public Journal Get(int id)
         {
@@ -90,6 +92,7 @@ namespace TabloidCLI
             }
         }
 
+
         public void Insert(Journal journalEntry)
         {
             using (SqlConnection conn = Connection)
@@ -109,14 +112,77 @@ namespace TabloidCLI
         }
 
 
-        //Update & Delete add code later in another Trello ticket/Github push. Placed here so IRepository wouldn't error out. 
         public void Update(Journal journalEntry)
         {
+        //    using (SqlConnection conn = Connection)
+        //    {
+        //        conn.Open();
+        //        using (SqlCommand cmd = conn.CreateCommand())
+        //        {
+        //            cmd.CommandText = @"UPDATE Journal 
+        //                                   SET Title = @Title,
+        //                                       Content = @Content
+        //                                 WHERE id = @id";
+
+        //            cmd.Parameters.AddWithValue("@Title", journalEntry.Title);
+        //            cmd.Parameters.AddWithValue("@Content", journalEntry.Content);
+        //            cmd.Parameters.AddWithValue("@id", journalEntry.Id);
+
+        //            cmd.ExecuteNonQuery();
+        //        }
+        //    }
         }
+
 
         public void Delete(int id)
         {
+        //    using (SqlConnection conn = Connection)
+        //    {
+        //        conn.Open();
+        //        using (SqlCommand cmd = conn.CreateCommand())
+        //        {
+        //            cmd.CommandText = @"DELETE FROM Journal WHERE id = @id";
+        //            cmd.Parameters.AddWithValue("@id", id);
+
+        //            cmd.ExecuteNonQuery();
+        //        }
+        //    }
         }
 
-        }
+
+        //public void InsertTag(Author author, Tag tag)
+        //{
+        //    using (SqlConnection conn = Connection)
+        //    {
+        //        conn.Open();
+        //        using (SqlCommand cmd = conn.CreateCommand())
+        //        {
+        //            cmd.CommandText = @"INSERT INTO AuthorTag (AuthorId, TagId)
+        //                                               VALUES (@authorId, @tagId)";
+        //            cmd.Parameters.AddWithValue("@authorId", author.Id);
+        //            cmd.Parameters.AddWithValue("@tagId", tag.Id);
+        //            cmd.ExecuteNonQuery();
+        //        }
+        //    }
+        //}
+
+
+        //public void DeleteTag(int authorId, int tagId)
+        //{
+        //    using (SqlConnection conn = Connection)
+        //    {
+        //        conn.Open();
+        //        using (SqlCommand cmd = conn.CreateCommand())
+        //        {
+        //            cmd.CommandText = @"DELETE FROM AuthorTAg 
+        //                                 WHERE AuthorId = @authorid AND 
+        //                                       TagId = @tagId";
+        //            cmd.Parameters.AddWithValue("@authorId", authorId);
+        //            cmd.Parameters.AddWithValue("@tagId", tagId);
+
+        //            cmd.ExecuteNonQuery();
+        //        }
+        //    }
+        //}
+    }
 }
