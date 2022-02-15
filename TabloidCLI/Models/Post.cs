@@ -12,5 +12,18 @@ namespace TabloidCLI.Models
         public DateTime PublishDateTime { get; set; }
         public Author Author { get; set; }
         public Blog Blog { get; set; }
+
+        public string PostDetails
+        {
+            get
+            {
+                return $"\n{Title} by {Author.FullName},\nPublished {PublishDateTime} through {Blog.Title}\nURL: {Url}\n";
+            }
+        }
+
+        public override string ToString()
+        {
+            return PostDetails;
+        }
     }
 }
