@@ -121,10 +121,10 @@ namespace TabloidCLI.UserInterfaceManagers
 
             Console.WriteLine();
             Console.Write("New tag name (blank to leave unchanged): ");
-            string tagName = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(tagName))
+            string name = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(name))
             {
-                tagToEdit.Name = tagName;
+                tagToEdit.Name = name;
             }
 
             _tagRepository.Update(tagToEdit);
