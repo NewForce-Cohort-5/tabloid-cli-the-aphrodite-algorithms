@@ -95,6 +95,8 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Add()
         {
+            Console.WriteLine();
+
             Console.WriteLine("New Entry");
             Journal entry = new Journal();
 
@@ -108,6 +110,9 @@ namespace TabloidCLI.UserInterfaceManagers
             entry.CreateDateTime = DateTime.Now;
 
             _journalRepository.Insert(entry);
+
+            Console.WriteLine("Thank you, your entry has been saved.");
+            Console.WriteLine();
         }
 
         private void Edit()
