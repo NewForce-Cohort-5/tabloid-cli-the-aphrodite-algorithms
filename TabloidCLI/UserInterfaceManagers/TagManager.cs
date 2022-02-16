@@ -52,28 +52,43 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void List()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Tag List:");
+
+            List<Tag> tags = _tagRepository.GetAll();
+            foreach (Tag tag in tags)
+            {
+                Console.WriteLine($"#{tag}");
+            }
+            Console.WriteLine();
         }
 
         private void Add()
         {
-            Console.WriteLine("New Tag");
+            Console.WriteLine();
+
+            //Console.WriteLine("New Tag");
             Tag tag = new Tag();
 
-            Console.Write("Tag Name: ");
+            Console.Write("Enter a new tag name: ");
             tag.Name = Console.ReadLine();
 
             _tagRepository.Insert(tag);
+
+            Console.WriteLine("Thank you, your new tag has been entered.");
+            Console.WriteLine();
         }
 
         private void Edit()
         {
+            Console.WriteLine();
             throw new NotImplementedException();
         }
 
         private void Remove()
         {
+            Console.WriteLine();
             throw new NotImplementedException();
+
         }
     }
 }
