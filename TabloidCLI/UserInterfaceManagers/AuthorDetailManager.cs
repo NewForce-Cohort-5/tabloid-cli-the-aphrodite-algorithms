@@ -64,7 +64,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("Tags:");
             foreach (Tag tag in author.Tags)
             {
-                Console.WriteLine(" " + tag);
+                Console.WriteLine("#" + tag);
             }
             Console.WriteLine();
         }
