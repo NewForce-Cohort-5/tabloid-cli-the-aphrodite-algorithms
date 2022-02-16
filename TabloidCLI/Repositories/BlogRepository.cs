@@ -10,6 +10,7 @@ namespace TabloidCLI
     {
         public BlogRepository(string connectionString) : base(connectionString) { }
 
+        // This code lists the blogs
         public List<Blog> GetAll()
         {
             using (SqlConnection conn = Connection)
@@ -93,7 +94,7 @@ namespace TabloidCLI
                 }
             }
         }
-
+        // this code add new blogs
         public void Insert(Blog blog)
         {
             using (SqlConnection conn = Connection)
@@ -111,41 +112,44 @@ namespace TabloidCLI
             }
         }
 
+        // This code edits blogs
         public void Update(Blog blog)
         {
-            //using (SqlConnection conn = Connection)
-            //{
-            //    conn.Open();
-            //    using (SqlCommand cmd = conn.CreateCommand())
-            //    {
-            //        cmd.CommandText = @"UPDATE Blog 
-            //                               SET Title = @title,
-            //                                   Url = @url
-            //                             WHERE id = @id";
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE Blog 
+                                           SET Title = @title,
+                                               Url = @url
+                                         WHERE id = @id";
 
-            //        cmd.Parameters.AddWithValue("@title", blog.Title);
-            //        cmd.Parameters.AddWithValue("@url", blog.Url);
+                    cmd.Parameters.AddWithValue("@title", blog.Title);
+                    cmd.Parameters.AddWithValue("@url", blog.Url);
 
-            //        cmd.ExecuteNonQuery();
-            //    }
-            //}
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
+        // This code deletes blogs
         public void Delete(int id)
         {
-            //using (SqlConnection conn = Connection)
-            //{
-            //    conn.Open();
-            //    using (SqlCommand cmd = conn.CreateCommand())
-            //    {
-            //        cmd.CommandText = @"DELETE FROM Author WHERE id = @id";
-            //        cmd.Parameters.AddWithValue("@id", id);
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM Author WHERE id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
 
-            //        cmd.ExecuteNonQuery();
-            //    }
-            //}
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
+        // This code adds tags to blogs
         public void InsertTag(Blog blog, Tag tag)
         {
             using (SqlConnection conn = Connection)
@@ -162,6 +166,7 @@ namespace TabloidCLI
             }
         }
 
+        // This code removes tags from blogs
         public void DeleteTag(int blogId, int tagId)
         {
             using (SqlConnection conn = Connection)
