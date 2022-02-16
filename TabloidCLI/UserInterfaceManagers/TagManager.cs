@@ -52,28 +52,92 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void List()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Tag List:");
+
+            List<Tag> tags = _tagRepository.GetAll();
+            foreach (Tag tag in tags)
+            {
+                Console.WriteLine($"#{tag}");
+            }
+            Console.WriteLine();
+        }
+
+        private Tag Choose(string prompt = null)
+        {
+            if (prompt == null)
+            {
+                prompt = "Please choose a Tag:";
+            }
+
+            Console.WriteLine(prompt);
+
+            List<Tag> tags = _tagRepository.GetAll();
+
+            for (int i = 0; i < tags.Count; i++)
+            {
+                Tag tag = tags[i];
+                Console.WriteLine($" {i + 1}) {tag.Name}");
+            }
+            Console.Write("> ");
+
+            string input = Console.ReadLine();
+            try
+            {
+                int choice = int.Parse(input);
+                return tags[choice - 1];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Invalid Selection");
+                return null;
+            }
         }
 
         private void Add()
         {
-            Console.WriteLine("New Tag");
+            Console.WriteLine();
+
+            //Console.WriteLine("New Tag");
             Tag tag = new Tag();
 
-            Console.Write("Tag Name: ");
+            Console.Write("Enter a new tag name: ");
             tag.Name = Console.ReadLine();
 
             _tagRepository.Insert(tag);
+
+            Console.WriteLine("Thank you, your new tag has been entered.");
+            Console.WriteLine();
         }
 
         private void Edit()
         {
-            throw new NotImplementedException();
+            Console.WriteLine();
+
+            Tag tagToEdit = Choose("Which tag would you like to edit?");
+            if (tagToEdit == null)
+            {
+                return;
+            }
+
+            Console.WriteLine();
+            Console.Write("New tag name (blank to leave unchanged): ");
+            string name = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                tagToEdit.Name = name;
+            }
+
+            _tagRepository.Update(tagToEdit);
+
+            Console.WriteLine("Thank you, your tag has been updated.");
+            Console.WriteLine();
         }
 
         private void Remove()
         {
+            Console.WriteLine();
             throw new NotImplementedException();
+
         }
     }
 }

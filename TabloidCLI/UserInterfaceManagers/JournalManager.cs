@@ -51,12 +51,15 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void List()
         {
+            Console.WriteLine("Your Journal Entries:");
+
             List<Journal> journalEntries = _journalRepository.GetAll();
             foreach (Journal entry in journalEntries)
             {
                 Console.WriteLine(entry);
                 Console.WriteLine("---------");
             }
+            Console.WriteLine();
         }
 
         private Journal Choose(string prompt = null)
@@ -92,6 +95,8 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Add()
         {
+            Console.WriteLine();
+
             Console.WriteLine("New Entry");
             Journal entry = new Journal();
 
@@ -105,16 +110,21 @@ namespace TabloidCLI.UserInterfaceManagers
             entry.CreateDateTime = DateTime.Now;
 
             _journalRepository.Insert(entry);
+
+            Console.WriteLine("Thank you, your entry has been saved.");
+            Console.WriteLine();
         }
 
         private void Edit()
         {
+            Console.WriteLine();
+
             Journal entryToEdit = Choose("Which entry would you like to edit?");
             if (entryToEdit == null)
             {
                 return;
             }
-
+            
             Console.WriteLine();
             Console.Write("New title (blank to leave unchanged): ");
             string title = Console.ReadLine();
