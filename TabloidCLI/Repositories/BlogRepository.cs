@@ -127,6 +127,7 @@ namespace TabloidCLI
 
                     cmd.Parameters.AddWithValue("@title", blog.Title);
                     cmd.Parameters.AddWithValue("@url", blog.Url);
+                    cmd.Parameters.AddWithValue("@id", blog.Id);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -141,7 +142,7 @@ namespace TabloidCLI
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE FROM Author WHERE id = @id";
+                    cmd.CommandText = @"DELETE FROM Blog WHERE id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
 
                     cmd.ExecuteNonQuery();
