@@ -55,34 +55,11 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void List()
         {
-            //List<Post> posts = _postRepository.GetAll();
-            //int i = 0;
-
-
-            //foreach (Post post in posts)
-            //{
-            //    i++;
-            //    Console.WriteLine($" {i}) {post.Title}");
-            //}
-            //Console.WriteLine("Select a post by entering the number as it appears in the list.");
-            //string choice = Console.ReadLine();
-
-            //if (!string.IsNullOrWhiteSpace(choice))
-            //{
-            //    PostDetails();
-            //}
-            Post post = Choose("Choose a post to see it's details");
-
-            if (post != null)
+            List<Post> posts = _postRepository.GetAll();
+            foreach (Post post in posts)
             {
-                PostDetails(post);
+                Console.WriteLine(post);
             }
-
-        }
-
-        private void PostDetails(Post post)
-        {
-            throw new NotImplementedException();
         }
 
         private void Add()
