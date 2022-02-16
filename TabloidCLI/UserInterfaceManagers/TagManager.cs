@@ -137,6 +137,7 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             Console.WriteLine();
             throw new NotImplementedException();
+
         }
     }
 }
