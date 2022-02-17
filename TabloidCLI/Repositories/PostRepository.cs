@@ -69,7 +69,77 @@ namespace TabloidCLI
 
         public Post Get(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT p.Id AS PostId,
+                                               p.Title,
+                                               p.Url,
+                                               p.PublishDateTime AS PublishDate,
+                                               a.Id AS AuthorId,
+                                               a.FirstName,
+                                               a.LastName,
+                                               a.Bio,
+                                               b.Id AS BlogId,
+                                               b.Title AS Blog,
+                                               b.Url AS BlogUrl,
+                                               t.Id AS TagId,
+                                               t.Name AS TagName
+                                        FROM Post p
+                                               LEFT JOIN Author a ON p.AuthorId = a.Id
+                                               LEFT JOIN Blog b ON p.BlogId = b.Id
+                                               LEFT JOIN PostTag pt ON pt.PostId = p.Id
+                                               LEFT JOIN Tag t ON pt.TagId = t.Id
+                                        WHERE p.Id = @id";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    Post post = null;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        if (post == null)
+                        {
+                            post = new Post()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("PostId")),
+                                Title = reader.GetString(reader.GetOrdinal("Title")),
+                                Url = reader.GetString(reader.GetOrdinal("Url")),
+                                PublishDateTime = reader.GetDateTime(reader.GetOrdinal("PublishDate")),
+                                Author = new Author()
+                                {
+                                    Id = reader.GetInt32(reader.GetOrdinal("AuthorId")),
+                                    FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                    LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                                    Bio = reader.GetString(reader.GetOrdinal("Bio"))
+                                },
+                                Blog = new Blog()
+                                {
+                                    Id = reader.GetInt32(reader.GetOrdinal("BlogId")),
+                                    Title = reader.GetString(reader.GetOrdinal("Blog")),
+                                    Url = reader.GetString(reader.GetOrdinal("BlogUrl"))
+                                }
+                            };
+                        }
+
+                        if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
+                        {
+                            post.Tags.Add(new Tag()
+                            { 
+                                Id = reader.GetInt32(reader.GetOrdinal("TagId")),
+                                Name = reader.GetString(reader.GetOrdinal("TagName"))
+                            });
+                        }
+                    }
+
+                    reader.Close();
+
+                    return post;
+                }
+            }
         }
 
         public List<Post> GetByAuthor(int authorId)
