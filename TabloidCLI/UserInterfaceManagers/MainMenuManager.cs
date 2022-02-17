@@ -46,8 +46,9 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "9": return new ColorChanger(this, CONNECTION_STRING);
                 case "0":
                     //Console.WriteLine("Good bye");
-                    Console.WriteLine();
-                    Console.WriteLine(@"~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
+                    //Console.WriteLine();
+                    Console.WriteLine(@"
+~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 
      _     _     888888b.                     888
     (c).-.(c)    888  '88b                    888
