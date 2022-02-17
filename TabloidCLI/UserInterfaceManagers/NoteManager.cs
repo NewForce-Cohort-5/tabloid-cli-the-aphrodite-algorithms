@@ -10,13 +10,14 @@ namespace TabloidCLI.UserInterfaceManagers
         private readonly IUserInterfaceManager _parentUI;
         private NoteRepository _noteRepository;
         private string _connectionString;
+        private int _postId;
 
-
-        public NoteManager(IUserInterfaceManager parentUI, string connectionString)
+        public NoteManager(IUserInterfaceManager parentUI, string connectionString, int postId)
         {
             _parentUI = parentUI;
             _noteRepository = new NoteRepository(connectionString);
             _connectionString = connectionString;
+            _postId = postId;
         }
 
         public IUserInterfaceManager Execute()
@@ -32,9 +33,9 @@ namespace TabloidCLI.UserInterfaceManagers
             string choice = Console.ReadLine();
             switch (choice)
             {
-            //    case "1":
-            //        List();
-            //        return this;
+                case "1":
+                    List();
+                    return this;
                 case "2":
                     Add();
                     return this;
@@ -50,46 +51,46 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
-       // private void List()
-        //{
-            //List<Note> noteList = _noteRepository.GetAll();
-            //foreach (Note note in noteList)
-            //{
-        //        Console.WriteLine(note);
-        //        Console.WriteLine("---------");
-        //    }
-       // }
+        private void List()
+        {
+            List<Note> noteList = _noteRepository.GetAll();
+            foreach (Note note in noteList)
+            {
+                Console.WriteLine(note);
+                Console.WriteLine("---------");
+            }
+        }
 
-       // private Note Choose(string prompt = null)
-       // {
-        //    if (prompt == null)
-        //    {
-        //        prompt = "Please choose a Note:";
-         //   }
+        private Note Choose(string prompt = null)
+        {
+            if (prompt == null)
+            {
+                prompt = "Please choose a Note:";
+            }
 
-         //   Console.WriteLine(prompt);
+            Console.WriteLine(prompt);
 
-         //   List<Note> noteEntries = _noteRepository.GetAll();
+            List<Note> noteEntries = _noteRepository.GetAll();
 
-         //   for (int i = 0; i < noteEntries.Count; i++)
-         //   {
-         //       Note note = noteEntries[i];
-         //       Console.WriteLine($" {i + 1}) {note.Title}");
-         //   }
-         //   Console.Write("> ");
+            for (int i = 0; i < noteEntries.Count; i++)
+            {
+                Note note = noteEntries[i];
+                Console.WriteLine($" {i + 1}) {note.Title}");
+            }
+            Console.Write("> ");
 
-        //    string input = Console.ReadLine();
-        //    try
-        //    {
-         //       int choice = int.Parse(input);
-        //        return noteEntries[choice - 1];
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Console.WriteLine("Invalid Selection");
-        //        return null;
-        //    }
-        //}
+            string input = Console.ReadLine();
+            try
+            {
+                int choice = int.Parse(input);
+                return noteEntries[choice - 1];
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid Selection");
+                return null;
+            }
+        }
 
         private void Add()
         {
@@ -104,6 +105,8 @@ namespace TabloidCLI.UserInterfaceManagers
 
             Console.WriteLine("Publish Date: ");
             note.CreateDateTime = DateTime.Parse(Console.ReadLine());
+
+            note.PostId = _postId;
 
 
             //post.Blog = ChooseBlog("Please choose a blog for this post");

@@ -47,7 +47,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "3":
                     throw new NotImplementedException();
                 case "4":
-                    return new NoteManager(this, _connectionString);
+                    return new NoteManager(this, _connectionString, _postId);
                 case "0":
                     return _parentUI;
                 default:
