@@ -67,7 +67,7 @@ namespace TabloidCLI.UserInterfaceManagers
             //{
             //    Console.WriteLine("#" + tag);
             //}
-            //Console.WriteLine();
+            Console.WriteLine();
         }
 
         private void AddTag()
