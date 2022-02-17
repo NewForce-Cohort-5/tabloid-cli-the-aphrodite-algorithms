@@ -6,7 +6,7 @@ using TabloidCLI.Repositories;
 
 namespace TabloidCLI.Repositories
 {
-    internal class NoteRepository : DatabaseConnector, IRepository<Note>
+    public class NoteRepository : DatabaseConnector, IRepository<Note>
     {
         public NoteRepository(string connectionString) : base(connectionString) { }
 
@@ -52,7 +52,7 @@ namespace TabloidCLI.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
 
                 {
-                    cmd.CommandText = @"SELECT n.Id AS JournalId,
+                    cmd.CommandText = @"SELECT n.Id AS NoteId,
                                                n.Title,
                                                n.Content,
                                                n.CreateDateTime,
@@ -105,6 +105,16 @@ namespace TabloidCLI.Repositories
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public void Update(Note entry)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
         }
 
 

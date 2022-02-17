@@ -1,12 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace TabloidCLI.Models
 {
-    internal class Note
+    public class Note
     {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public DateTime CreateDateTime { get; set; }
+        public Post Post { get; set; }
+        public string NoteEntry
+        {
+            get
+            {
+                return $"\nEntry Title: {Title} \nPublished on {CreateDateTime} \nEntry: {Content}\n";
+            }
+        }
+        public DateTime PublishDateTime { get; set; }
+
+        public override string ToString()
+        {
+            return NoteEntry;
+        }
+    
     }
 }
