@@ -17,18 +17,6 @@ namespace TabloidCLI.UserInterfaceManagers
 -ooO--(_)--Ooo- /_/ /_/\___/_/_/\____/ ooO--(_)--Ooo-
             ");
 
-   //         Console.WriteLine(@"
-   //   _     _   
-   //  (c).-.(c)     __ __   ___ _     _      ___  
-   //   / ._. \     |  T  T /  _| T   | T    /   \
-   // __\( Y )/__   |  l  |/  [_| |   | |   Y     Y 
-   //(_.-/'-'\-._)  |  _  Y    _| l___| l___|  O  | 
-   //   || o ||     |  |  |   [_|     |     |     | 
-   // _.' `-' '._   |  |  |     |     |     l     ! 
-   //(.-./`-'\.-.)  l__j__l_____l_____l_____j\___/ 
-   // `-'     `-'   
-   //         ");
-
             Console.WriteLine("Welcome to Aphrodite Algorithm's Blog Spot Love Stop");
             Console.WriteLine("      Home of the Goddess of Love and Coding");
             Console.WriteLine("\n~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~\n");
