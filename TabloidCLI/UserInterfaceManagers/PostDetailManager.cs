@@ -40,7 +40,8 @@ namespace TabloidCLI.UserInterfaceManagers
                     View(post);
                     return this;
                 case "2":
-                    throw new NotImplementedException();
+                    AddTag();
+                    return this;
                 case "3":
                     throw new NotImplementedException();
                 case "4":
@@ -61,12 +62,39 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine($"Publish Date: {post.PublishDateTime}");
             Console.WriteLine($"Author: {post.Author.FullName}");
             Console.WriteLine($"Blog: {post.Blog.Title}");
-            Console.WriteLine("Tags:");
-            foreach (Tag tag in post.Tags)
+            //Console.WriteLine("Tags:");
+            //foreach (Tag tag in post.Tags)
+            //{
+            //    Console.WriteLine("#" + tag);
+            //}
+            //Console.WriteLine();
+        }
+
+        private void AddTag()
+        {
+            Post post = _postRepository.Get(_postId);
+
+            Console.WriteLine($"Which tag would you like to add to {post.Title}?");
+            List<Tag> tags = _tagRepository.GetAll();
+
+            for (int i = 0; i < tags.Count; i++)
             {
-                Console.WriteLine("#" + tag);
+                Tag tag = tags[i];
+                Console.WriteLine($" {i + 1}) {tag.Name}");
             }
-            Console.WriteLine();
+            Console.Write("> ");
+
+            string input = Console.ReadLine();
+            try
+            {
+                int choice = int.Parse(input);
+                Tag tag = tags[choice - 1];
+                _postRepository.InsertTag(post, tag);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid Selection. Won't add any tags.");
+            }
         }
     }
 }
