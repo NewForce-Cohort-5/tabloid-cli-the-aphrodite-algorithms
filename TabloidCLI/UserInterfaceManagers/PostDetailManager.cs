@@ -117,7 +117,7 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 int choice = int.Parse(input);
                 Tag tag = tags[choice - 1];
-                _authorRepository.DeleteTag(post.Id, tag.Id);
+                _postRepository.DeleteTag(post.Id, tag.Id);
 
                 Console.WriteLine($"Your tag #{tag.Name} has been removed.");
                 Console.WriteLine();
