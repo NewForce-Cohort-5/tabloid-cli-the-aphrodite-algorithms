@@ -140,10 +140,10 @@ namespace TabloidCLI.UserInterfaceManagers
             if (tagToDelete != null)
             {
                 _tagRepository.Delete(tagToDelete.Id);
-            }
 
-            Console.WriteLine($"Your tag #{tagToDelete.Name} has been removed.");
-            Console.WriteLine();
+                Console.WriteLine($"Your tag #{tagToDelete.Name} has been removed.");
+                Console.WriteLine();
+            }
         }
     }
 }
