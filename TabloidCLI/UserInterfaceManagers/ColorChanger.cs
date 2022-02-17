@@ -34,8 +34,6 @@ namespace TabloidCLI.UserInterfaceManagers
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("Press any key to continue");
-                    Console.ReadKey();
                     return this;
                 case "2":
                     Console.BackgroundColor = ConsoleColor.DarkBlue;
@@ -46,22 +44,16 @@ namespace TabloidCLI.UserInterfaceManagers
                     Console.BackgroundColor = ConsoleColor.DarkGreen;
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("Press any key to continue");
-                    Console.ReadKey();
                     return this;
                 case "4":
                     Console.BackgroundColor = ConsoleColor.DarkRed;
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("Press any key to continue");
-                    Console.ReadKey();
                     return this;
                 case "5":
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("Press any key to continue");
-                    Console.ReadKey();
                     return this;
                 case "0":
                     return _parentUI;
