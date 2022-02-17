@@ -25,7 +25,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine(" 1) List Notes");
             Console.WriteLine(" 2) Add Notes");
             Console.WriteLine(" 3) Remove Notes");
-            Console.WriteLine(" 4) Note Management");
+            //Console.WriteLine(" 4) Note Management");
             Console.WriteLine(" 0) Go Back");
 
             Console.Write("> ");
