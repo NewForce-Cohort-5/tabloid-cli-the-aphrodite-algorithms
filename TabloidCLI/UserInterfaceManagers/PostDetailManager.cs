@@ -43,7 +43,8 @@ namespace TabloidCLI.UserInterfaceManagers
                     AddTag();
                     return this;
                 case "3":
-                    throw new NotImplementedException();
+                    RemoveTag();
+                    return this;
                 case "4":
                     throw new NotImplementedException();
                 case "0":
@@ -94,6 +95,36 @@ namespace TabloidCLI.UserInterfaceManagers
             catch (Exception)
             {
                 Console.WriteLine("Invalid Selection. Won't add any tags.");
+            }
+        }
+
+        private void RemoveTag()
+        {
+            Post post = _postRepository.Get(_postId);
+
+            Console.WriteLine($"Which tag would you like to remove from {post.Title}?");
+            List<Tag> tags = post.Tags;
+
+            for (int i = 0; i < tags.Count; i++)
+            {
+                Tag tag = tags[i];
+                Console.WriteLine($" {i + 1}) {tag.Name}");
+            }
+            Console.Write("> ");
+
+            string input = Console.ReadLine();
+            try
+            {
+                int choice = int.Parse(input);
+                Tag tag = tags[choice - 1];
+                _authorRepository.DeleteTag(post.Id, tag.Id);
+
+                Console.WriteLine($"Your tag #{tag.Name} has been removed.");
+                Console.WriteLine();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid Selection. Won't remove any tags.");
             }
         }
     }
