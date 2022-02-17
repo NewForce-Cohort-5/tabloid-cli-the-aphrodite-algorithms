@@ -55,7 +55,7 @@ namespace TabloidCLI.UserInterfaceManagers
                     Remove();
                     return this;
                 case "6":
-                    throw new NotImplementedException();
+                    return new NoteManager (this, _connectionString);
                 case "0":
                     return _parentUI;
                 default:
