@@ -81,7 +81,10 @@ namespace TabloidCLI
                                                a.Id AS AuthorId,
                                                a.FirstName,
                                                a.LastName,
+                                               a.Bio,
+                                               b.Id AS BlogId,
                                                b.Title AS Blog,
+                                               b.Url AS BlogUrl,
                                                t.Id AS TagId,
                                                t.Name AS TagName
                                         FROM Post p
@@ -105,7 +108,20 @@ namespace TabloidCLI
                                 Id = reader.GetInt32(reader.GetOrdinal("PostId")),
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Url = reader.GetString(reader.GetOrdinal("Url")),
-                                PublishDateTime = reader.GetDateTime(reader.GetOrdinal("PublishDate"))
+                                PublishDateTime = reader.GetDateTime(reader.GetOrdinal("PublishDate")),
+                                Author = new Author()
+                                {
+                                    Id = reader.GetInt32(reader.GetOrdinal("AuthorId")),
+                                    FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                    LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                                    Bio = reader.GetString(reader.GetOrdinal("Bio"))
+                                },
+                                Blog = new Blog()
+                                {
+                                    Id = reader.GetInt32(reader.GetOrdinal("BlogId")),
+                                    Title = reader.GetString(reader.GetOrdinal("Blog")),
+                                    Url = reader.GetString(reader.GetOrdinal("BlogUrl"))
+                                }
                             };
                         }
 

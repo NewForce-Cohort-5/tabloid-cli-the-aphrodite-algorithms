@@ -39,7 +39,14 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "1":
                     View(post);
                     return this;
-
+                case "2":
+                    throw new NotImplementedException();
+                case "3":
+                    throw new NotImplementedException();
+                case "4":
+                    throw new NotImplementedException();
+                case "0":
+                    return _parentUI;
                 default:
                     Console.WriteLine("Invalid Selection");
                     return this;
@@ -57,7 +64,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("Tags:");
             foreach (Tag tag in post.Tags)
             {
-                Console.WriteLine(" " + tag);
+                Console.WriteLine("#" + tag);
             }
             Console.WriteLine();
         }
