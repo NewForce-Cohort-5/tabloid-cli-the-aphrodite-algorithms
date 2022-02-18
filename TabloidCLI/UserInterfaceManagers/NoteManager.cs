@@ -39,9 +39,9 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "2":
                     Add();
                     return this;
-             //   case "3":
-             //       Remove();
-             //       return this;
+                case "3":
+                    Remove();
+                    return this;
                     
                 case "0":
                     return _parentUI;
@@ -114,14 +114,14 @@ namespace TabloidCLI.UserInterfaceManagers
             _noteRepository.Insert(note);
         }
 
-        //private void Remove()
-        //{
-        //    Note noteToDelete = Choose("Which note would you like to remove?");
-        //    if (noteToDelete != null)
-        //    {
-        //        _noteRepository.Delete(noteToDelete.Id);
-        //    }
-        //}
+        private void Remove()
+        {
+            Note noteToDelete = Choose("Which note would you like to remove?");
+            if (noteToDelete != null)
+            {
+                _noteRepository.Delete(noteToDelete.Id);
+            }
+        }
 
 
 
