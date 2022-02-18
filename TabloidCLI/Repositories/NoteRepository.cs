@@ -46,6 +46,43 @@ namespace TabloidCLI.Repositories
             }
         }
 
+        public List<Note> GetAllByPost(int postId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT id,
+                                               Title,
+                                               Content,
+                                               CreateDateTime,
+                                               PostId
+                                          FROM Note
+                                          WHERE PostId = @postId";
+                    cmd.Parameters.AddWithValue("@postId", postId);
+
+                    List<Note> noteEntries = new List<Note>();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Note entry = new Note()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Title = reader.GetString(reader.GetOrdinal("Title")),
+                            Content = reader.GetString(reader.GetOrdinal("Content")),
+                            CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
+                            PostId = reader.GetInt32(reader.GetOrdinal("PostId"))
+                        };
+                        noteEntries.Add(entry);
+                    }
+                    reader.Close();
+
+                    return noteEntries;
+                }
+            }
+        }
         public Note Get(int id)
         {
             using (SqlConnection conn = Connection)
