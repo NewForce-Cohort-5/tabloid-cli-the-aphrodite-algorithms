@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using TabloidCLI.Models;
 
 namespace TabloidCLI.UserInterfaceManagers
@@ -84,7 +85,12 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void SearchAll()
         {
+            Console.Write("Tag> ");
+            string tagName = Console.ReadLine();
 
+            SearchResults<Author> authorResults = _tagRepository.SearchAuthors(tagName);
+            SearchResults<Post> postResults = _tagRepository.SearchPosts(tagName);
+            
         }
     }
 }
