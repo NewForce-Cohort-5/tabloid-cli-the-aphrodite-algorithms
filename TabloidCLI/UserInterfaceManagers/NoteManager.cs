@@ -70,7 +70,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
             Console.WriteLine(prompt);
 
-            List<Note> noteEntries = _noteRepository.GetAll();
+            List<Note> noteEntries = _noteRepository.GetAllByPost(_postId);
 
             for (int i = 0; i < noteEntries.Count; i++)
             {
