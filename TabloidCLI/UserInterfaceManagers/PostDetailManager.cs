@@ -43,9 +43,11 @@ namespace TabloidCLI.UserInterfaceManagers
                     View(post);
                     return this;
                 case "2":
-                    throw new NotImplementedException();
+                    AddTag();
+                    return this;
                 case "3":
-                    throw new NotImplementedException();
+                    RemoveTag();
+                    return this;
                 case "4":
                     return new NoteManager(this, _connectionString, _postId);
                 case "0":
@@ -70,6 +72,63 @@ namespace TabloidCLI.UserInterfaceManagers
                 Console.WriteLine("#" + tag);
             }
             Console.WriteLine();
+        }
+
+        private void AddTag()
+        {
+            Post post = _postRepository.Get(_postId);
+
+            Console.WriteLine($"Which tag would you like to add to {post.Title}?");
+            List<Tag> tags = _tagRepository.GetAll();
+
+            for (int i = 0; i < tags.Count; i++)
+            {
+                Tag tag = tags[i];
+                Console.WriteLine($" {i + 1}) {tag.Name}");
+            }
+            Console.Write("> ");
+
+            string input = Console.ReadLine();
+            try
+            {
+                int choice = int.Parse(input);
+                Tag tag = tags[choice - 1];
+                _postRepository.InsertTag(post, tag);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid Selection. Won't add any tags.");
+            }
+        }
+
+        private void RemoveTag()
+        {
+            Post post = _postRepository.Get(_postId);
+
+            Console.WriteLine($"Which tag would you like to remove from {post.Title}?");
+            List<Tag> tags = post.Tags;
+
+            for (int i = 0; i < tags.Count; i++)
+            {
+                Tag tag = tags[i];
+                Console.WriteLine($" {i + 1}) {tag.Name}");
+            }
+            Console.Write("> ");
+
+            string input = Console.ReadLine();
+            try
+            {
+                int choice = int.Parse(input);
+                Tag tag = tags[choice - 1];
+                _postRepository.DeleteTag(post.Id, tag.Id);
+
+                Console.WriteLine($"Your tag #{tag.Name} has been removed.");
+                Console.WriteLine();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid Selection. Won't remove any tags.");
+            }
         }
     }
 }
