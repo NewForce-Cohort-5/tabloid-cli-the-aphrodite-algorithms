@@ -20,7 +20,8 @@ namespace TabloidCLI.Repositories
                     cmd.CommandText = @"SELECT id,
                                                Title,
                                                Content,
-                                               CreateDateTime
+                                               CreateDateTime,
+                                               PostId
                                           FROM Note";
 
                     List<Note> noteEntries = new List<Note>();
@@ -34,6 +35,7 @@ namespace TabloidCLI.Repositories
                             Title = reader.GetString(reader.GetOrdinal("Title")),
                             Content = reader.GetString(reader.GetOrdinal("Content")),
                             CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
+                            PostId = reader.GetInt32(reader.GetOrdinal("PostId"))
                         };
                         noteEntries.Add(entry);
                     }
@@ -44,6 +46,43 @@ namespace TabloidCLI.Repositories
             }
         }
 
+        public List<Note> GetAllByPost(int postId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT id,
+                                               Title,
+                                               Content,
+                                               CreateDateTime,
+                                               PostId
+                                          FROM Note
+                                          WHERE PostId = @postId";
+                    cmd.Parameters.AddWithValue("@postId", postId);
+
+                    List<Note> noteEntries = new List<Note>();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Note entry = new Note()
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Title = reader.GetString(reader.GetOrdinal("Title")),
+                            Content = reader.GetString(reader.GetOrdinal("Content")),
+                            CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
+                            PostId = reader.GetInt32(reader.GetOrdinal("PostId"))
+                        };
+                        noteEntries.Add(entry);
+                    }
+                    reader.Close();
+
+                    return noteEntries;
+                }
+            }
+        }
         public Note Get(int id)
         {
             using (SqlConnection conn = Connection)
@@ -78,6 +117,7 @@ namespace TabloidCLI.Repositories
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Content = reader.GetString(reader.GetOrdinal("Content")),
                                 CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
+                                PostId = reader.GetInt32(reader.GetOrdinal("PostId"))
                             };
                         }
                     }
@@ -96,11 +136,12 @@ namespace TabloidCLI.Repositories
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO Note (Title, Content, CreateDateTime )
-                                                     VALUES (@title, @content, @createDateTime)";
+                    cmd.CommandText = @"INSERT INTO Note (Title, Content, CreateDateTime, PostId )
+                                                     VALUES (@title, @content, @createDateTime,@postId)";
                     cmd.Parameters.AddWithValue("@title", entry.Title);
                     cmd.Parameters.AddWithValue("@content", entry.Content);
                     cmd.Parameters.AddWithValue("@createDateTime", entry.CreateDateTime);
+                    cmd.Parameters.AddWithValue("@postId", entry.PostId);
 
                     cmd.ExecuteNonQuery();
                 }
