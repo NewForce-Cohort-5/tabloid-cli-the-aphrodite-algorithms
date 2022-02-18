@@ -25,7 +25,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine(" 3) Add Post");
             Console.WriteLine(" 4) Edit Post");
             Console.WriteLine(" 5) Remove Post");
-            Console.WriteLine(" 6) Note Management");
+           
             Console.WriteLine(" 0) Go Back");
 
             Console.Write("> ");
@@ -54,8 +54,8 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "5":
                     Remove();
                     return this;
-                case "6":
-                    return new NoteManager (this, _connectionString);
+               
+                    
                 case "0":
                     return _parentUI;
                 default:
